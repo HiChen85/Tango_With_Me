@@ -19,7 +19,7 @@ class WebSiteCategory(models.Model):
     likes = models.IntegerField(default=0)
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = 'WebSiteCategories'
 
 
     def __str__(self):
@@ -31,6 +31,9 @@ class UserCategory(models.Model):
     name = models.CharField(verbose_name='category_name', max_length=128, null=False)
     # define an alias for specific user_category: username_categoryname
     alias = models.CharField(verbose_name='user_category', max_length=128)
+
+    class Meta:
+        verbose_name_plural = 'User Categories'
 
     def __str__(self):
         return self.name
