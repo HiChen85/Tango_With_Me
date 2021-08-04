@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from rango import views
 
 urlpatterns = [
-    path('', views.base, name='index'),
+    path('', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('rango/', include(('rango.urls', 'rango'), namespace='rango')),
     path('accounts/', include('allauth.urls')),

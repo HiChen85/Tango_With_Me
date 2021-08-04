@@ -1,0 +1,42 @@
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Show Category
+{% endblock %}
+
+{% block h1_title %}
+    {% if web_site_category %}
+        <h1>Category: {{ web_site_category.name }}</h1>
+        <br/>
+        <h3>Welcome {{ user.username }}</h3>
+    {% endif %}
+{% endblock %}
+
+{% block resultBlock %}
+    {% if web_site_category %}
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                    <div class="show-search-results thumbnail">
+                        <div style="margin-bottom: 10px;"><a style="font-size: medium;"
+                                                             href="{{ page.url }}">{{ page.title }}</a></div>
+                        <form role="form" class="form-inline">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-heart-o"
+                                                                             style="font-size:15px"> {{ page.likes }}</i>
+                            </button>
+                            <button type="submit" class="btn btn-default"><i class="fa fa-eye"
+                                                                             style="font-size:15px"> {{ page.views }}</i>
+                            </button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>No pages currently in this category.</strong>
+        {% endif %}
+    {% else %}
+        <strong>No WebSite Category exist currently!</strong>
+    {% endif %}
+{% endblock %}
+

@@ -48,6 +48,9 @@ def populate():
     website_categories = {
         'python': {'pages': python_pages, 'views': 12, 'likes': 23},
         'django': {'pages': django_pages, 'views': 64, 'likes': 32},
+        'golang': {'pages': [], 'views': 55, 'likes': 45},
+        'flutter': {'pages': [], 'views': 62, 'likes': 78},
+        'gin': {'pages': [], 'views': 98, 'likes': 63},
     }
 
     add_website_category(website_categories)
