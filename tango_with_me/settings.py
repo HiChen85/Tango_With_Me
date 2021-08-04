@@ -53,6 +53,30 @@ ACCOUNT_EMAIL_VERIFICATION = 'optional'
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/rango'
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google':{
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'github':{
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
