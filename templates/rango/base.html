@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+<head>
+    <title>Our project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="icon" href="{% static "images/favicon.ico" %}">
+    <!-- 这是图标 -->
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/offcanvas.css" %}" rel="stylesheet">
+
+
+    <style>
+        .form-inline .form-group {
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .form-inline .form-group .form-control {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .result-block {
+            margin-top: 5%;
+        }
+
+        .img-circle {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 5%;
+            margin-top: 5%;
+        }
+
+        .side-content {
+            margin-top: 10px;
+        }
+
+        .sidebar-offcanvas.jumbotron {
+            padding: 2%;
+        }
+
+        .show-search-results {
+            border: 1px solid #CCCCCC;
+            padding: 2%;
+        }
+
+        .show-search-results > h4 {
+            margin-bottom: 5%;
+        }
+
+        .user-info > label {
+            padding: 0;
+            margin-right: 12px;
+        }
+
+        .user-info.upload-button > button {
+            width: 20%;
+            margin-left: calc(2.5% - 2px);
+        }
+
+        .user-info.upload-button button:nth-child(1) {
+            margin-right: 5%;
+        }
+
+        .login-area > form > button {
+            margin-top: 10%;
+        }
+
+        .login-area {
+            margin-top: 5%;
+        }
+
+        .external-link {
+            margin-top: 5%;
+            margin-left: 10%;
+            width: 20%;
+        }
+
+        #side-content-form-label {
+
+        }
+
+        #side-content-form-text {
+            resize: none;
+        }
+
+        #sidebar {
+            background: lightslategray;
+        }
+
+        #search {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url "rango:index" %}">Rango</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Anyways</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav pull-right">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign Up</a></li>
+            </ul>
+        </div><!-- /.nav-collapse -->
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <div class="jumbotron">
+                <h1>Rango {{ header }}</h1>
+                <p>{{ descriptionOfHeader }}</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-md-12">
+                    {% block contentBlock %}
+                        {% block searchBlcok %}
+                            <form class="form-inline" role="form">
+                                <div class="form-group col-md-11">
+                                    <input type="text" class="form-control" id="search">
+                                </div>
+                                <button type="submit" class="btn btn-default">Search</button>
+                            </form>
+                        {% endblock %}
+
+                        {% block resultBlock %}
+                            <div class="col-md-6 result-block">
+                                <h3 class="text-center">Top 5 category</h3>
+                                <ul>
+                                    <li><a href="#">Python</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 result-block">
+                                <h3 class="text-center">Top 5 Pages</h3>
+                                <ul>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                    <li><a href="https://www.google.com">Google</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-default col-md-offset-6">More Categories</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-default col-md-offset-6">More Pages</button>
+                            </div>
+                        {% endblock %}
+                    {% endblock %}
+
+                </div><!--/.col-xs-6 col-md-12-->
+            </div><!--/row-->
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        {% block  sidebar %}
+            <div class="col-xs-6 col-sm-3 sidebar-offcanvas jumbotron" id="sidebar">
+                <div class="list-group">
+                    <img class="img-circle center-block" src="{% static "images/rango.jpg" %}"/>
+                    <div class="list-group-item text-center">Login/Email</div>
+                    <div class="list-group-item side-content">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="name"
+                                       class="col-md-8 col-md-offset-2 col-lg-offset-2 col-xl-offset-2 text-center"
+                                       id="side-content-form-label">Customize List</label>
+                                <textarea class="col-md-12" rows="3" id="side-content-form-text"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-default" name="moreCategories" onclick="open()">Add
+                                Category
+                            </button>
+                        </form>
+                    </div>
+                    <div class="list-group-item side-content">
+                        <p>Preference:</p>
+                        <ol>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                            <li>some categories</li>
+                        </ol>
+                        <ol>
+                            <li>some pages</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!--/.sidebar-offcanvas-->
+        {% endblock %}
+    </div><!--/row-->
+
+    <hr>
+
+    <footer>
+        <p></p>
+    </footer>
+
+</div><!--/.container-->
+
+<script>
+    function open() {
+        document.location.replace("{% url "rango:categories" %}")
+    }
+</script>
+
+
+<!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
+<script src="{% static "js/jquery-1.x-git.min.js" %}"></script>
+<!-- 包括所有已编译的插件 -->
+<script src="{% static "css/bootstrap.min.css" %}"></script>
+<script src="{% static "css/offcanvas.css" %}"></script>
+</body>
+</html>
