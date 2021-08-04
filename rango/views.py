@@ -6,8 +6,8 @@ def index(request):
     context_dict={}
     return render(request, "rango/index.html", context=context_dict)
 
-# def base(request):
-#     return render(request, "rango/base.html")
+def base(request):
+    return render(request, "rango/base.html")
 
 def categories(request):
     return render(request, "rango/categories.html")
