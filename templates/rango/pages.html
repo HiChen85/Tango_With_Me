@@ -15,14 +15,17 @@
     {% if current_page %}
         {% for data in current_page %}
             <div class="show-search-results thumbnail">
-                <div style="margin-bottom: 10px;"><a style="font-size: medium;"
-                                                     href="{{ data.url }}">{{ data.title }}</a></div>
+                <div class="title" style="margin-bottom: 10px;"><a style="font-size: medium;"
+                                                                   href="{{ data.url }}">{{ data.title }}</a></div>
                 <form role="form" class="form-inline">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-heart-o"
-                                                                     style="font-size:15px"> {{ data.likes }}</i>
+                    <button type="button" class="btn btn-default likes"><i class="fa fa-heart-o"
+                                                                           style="font-size:15px"> {{ data.likes }}</i>
                     </button>
-                    <button type="submit" class="btn btn-default"><i class="fa fa-eye"
-                                                                     style="font-size:15px"> {{ data.views }}</i>
+                    <button type="button" class="btn btn-default views"><i class="fa fa-eye"
+                                                                           style="font-size:15px"> {{ data.views }}</i>
+                    </button>
+                    <button type="button" class="btn btn-default category"><i class="fa fa-tag"
+                                                                              aria-hidden="true"> {{ data.web_site_category }}</i>
                     </button>
                 </form>
             </div>
@@ -50,5 +53,54 @@
         {% endif %}
 
     {% endif %}
+
+
+    <script src="{% static "js/jquery-1.x-git.min.js" %}"></script>
+    <script>
+        window.addEventListener('pageshow', function (event) {
+            if (event.persisted || window.performance &&
+                window.performance.navigation.type == 2) {
+                location.reload();
+            }
+        });
+
+        $(function () {
+            $(".likes").on('click', function () {
+                var thisPage = $(this);
+                console.log($(this));
+                var title = thisPage.parent().prev().text();
+                $.ajax({
+                    url: '/rango/like_up',
+                    type: "POST",
+                    data: {
+                        mod: 'Page',
+                        title: title,
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function (result) {
+                        console.log(thisPage.children().text())
+                        thisPage.children().text(' ' + result.likes)
+                    }
+                });
+            });
+
+            $(".title").on('click', function () {
+                var thisPage = $(this);
+                var title = thisPage.text();
+                $.ajax({
+                    url: '/rango/add_view',
+                    type: "POST",
+                    data: {
+                        mod: 'Page',
+                        title: title,
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                    },
+                    success: function (result) {
+
+                    }
+                });
+            });
+        });
+    </script>
 
 {% endblock %}

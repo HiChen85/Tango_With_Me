@@ -13,5 +13,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('show_category/<str:category_name>/', views.show_category, name='show_category'),
     path('add_video/', views.add_video, name='add_video'),
-    path('videos/', views.videos, name='videos')
+    path('videos/', views.videos, name='videos'),
+    path('like_up', views.like_up, name='like_up'),
+    path('add_view', views.add_view, name='add_view'),
 ]
