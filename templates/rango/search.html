@@ -1,0 +1,73 @@
+{% extends "rango/base.html" %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Pages
+{% endblock %}
+
+{% block h1_title %}
+    <h1>Select Page: {{search_item}}</h1>
+    <br/>
+    <h3>Welcome {{ user.username }}</h3>
+{% endblock %}
+
+{% block resultBlock %}
+    {% if current_page %}
+
+        <table class="table_pages">
+            <thead><tr><th></th></tr></thead>
+        <tbody>
+        <tr><td>
+        {% for data in current_page %}
+            <div class="show-search-results thumbnail">
+                <div style="margin-bottom: 10px;"><a style="font-size: medium;"
+                                                     href="{{ data.url }}">{{ data.title }}</a></div>
+                <form role="form" class="form-inline">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-heart-o"
+                                                                     style="font-size:15px"> {{ data.likes }}</i>
+                    </button>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-eye"
+                                                                     style="font-size:15px"> {{ data.views }}</i>
+                    </button>
+                    <button type="button" class="btn btn-default"><i class="fa fa-tag" aria-hidden="true"> {{ data.web_site_category }}</i></button>
+                </form>
+            </div>
+        {% endfor %}
+{#        {% if current_page.has_previous %}#}
+{#            <div class="col-md-6" style="float:left;">#}
+{#                <a href="{% url 'rango:pages' %}?current_page={{ current_page.previous_page_number }}"#}
+{#                   class="btn btn-default col-md-offset-6"> Previous</a>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <div class="col-md-6" style="float:left;">#}
+{#                <button class="btn btn-default col-md-offset-6 disabled">Previous</button>#}
+{#            </div>#}
+{#        {% endif %}#}
+{#        {% if current_page.has_next %}#}
+{#            <div class="col-md-6" style="float:left;">#}
+{#                <a href="{% url 'rango:pages' %}?current_page={{ current_page.next_page_number }}"#}
+{#                   class="btn btn-default col-md-offset-6"> Next</a>#}
+{#            </div>#}
+{#        {% else %}#}
+{#            <div class="col-md-6" style="float:left;">#}
+{#                <button class="btn btn-default col-md-offset-6 disabled"> Next</button>#}
+{#            </div>#}
+{#        {% endif %}#}
+        </td>
+        </tr>
+
+        </tbody>
+        </table>
+    {% endif %}
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js" type="text/javascript" charset="utf8"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+
+<script>
+
+   $(document).ready(function () {
+      $('.table_pages').DataTable();
+   })
+</script>
+
+{% endblock %}
