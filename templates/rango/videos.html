@@ -13,12 +13,14 @@
 
 {% block resultBlock %}
     {% if video_urls %}
-        <div class="col-md-6 result-block">
+        <div class="col-md-6 result-block videos">
             {% for v in video_urls %}
                 <label>{{ v.0 }}</label>
-                <iframe width="560" height="315" src="{{ v.1 }}"
+                <iframe width="620" height="370" src="{{ v.1 }}"
                         title="YouTube video player" frameborder="0"
+                        seamless="seamless"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"
                         allowfullscreen></iframe>
             {% endfor %}
         </div>

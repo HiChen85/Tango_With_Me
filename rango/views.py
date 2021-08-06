@@ -68,7 +68,7 @@ def add_video(request):
 
 @login_required
 def videos(request):
-    pattern = r'src=.+"\stitle'
+    pattern = r'src=.+"\s[titlescrolling]'
     context = {}
     user = User.objects.get(username=request.user.username)
     videos = Video.objects.filter(user=user)
@@ -76,6 +76,7 @@ def videos(request):
     for v in videos:
         substr = re.search(pattern, v.iframe_url)
         url = substr.group().split(' ')[0].split('"')[1]
+        print(url)
         video_url_list.append((v.title, url))
 
     context['video_urls'] = video_url_list
