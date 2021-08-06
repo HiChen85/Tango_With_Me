@@ -61,8 +61,8 @@ def populate():
             print(f"- {c}: {p}")
 
     host = 'http://127.0.0.1:8000'
-    third_party = [['Google', 'google', '975913225146-kli9v7upjr2rr8te03ehrbuh6lk3oh8t.apps.googleusercontent.com', '51_TsWnabM7oZYh5cLxewPm4', host],
-           ['Github', 'github', '7b601069dfcf98816b94', '66e4c37e4ba25a79de52e488295e14a0f80b263d', host]]
+    third_party = [['google', 'google', '975913225146-kli9v7upjr2rr8te03ehrbuh6lk3oh8t.apps.googleusercontent.com', '51_TsWnabM7oZYh5cLxewPm4', host],
+           ['github', 'github', '7b601069dfcf98816b94', '66e4c37e4ba25a79de52e488295e14a0f80b263d', host]]
 
     try:
         new_site = Site.objects.get(domain='example.com')
