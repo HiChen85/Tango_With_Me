@@ -15,39 +15,35 @@
     {% if current_page %}
         {% for data in current_page %}
             <div class="show-search-results thumbnail">
-                <div class="title" style="margin-bottom: 10px;"><a style="font-size: medium;"
-                                                                   href="{{ data.url }}">{{ data.title }}</a></div>
+                <div class="title"><a class="top-5-list" href="{{ data.url }}">{{ data.title }}</a></div>
                 <form role="form" class="form-inline">
-                    <button type="button" class="btn btn-default likes"><i class="fa fa-heart-o"
-                                                                           style="font-size:15px"> {{ data.likes }}</i>
+                    <button type="button" class="btn btn-default likes"><i class="fa fa-heart-o"> {{ data.likes }}</i>
                     </button>
-                    <button type="button" class="btn btn-default views"><i class="fa fa-eye"
-                                                                           style="font-size:15px"> {{ data.views }}</i>
+                    <button type="button" class="btn btn-default views"><i class="fa fa-eye"> {{ data.views }}</i>
                     </button>
-                    <button type="button" class="btn btn-default category"><i class="fa fa-tag"
-                                                                              aria-hidden="true"> {{ data.web_site_category }}</i>
+                    <button type="button" class="btn btn-default category"><i class="fa fa-tag" aria-hidden="true"> {{ data.web_site_category }}</i>
                     </button>
                 </form>
             </div>
         {% endfor %}
         {% if current_page.has_previous %}
-            <div class="col-md-6" style="float:left;">
+            <div class="col-md-6 left-float">
                 <a href="{% url 'rango:pages' %}?current_page={{ current_page.previous_page_number }}"
                    class="btn btn-default col-md-offset-6"> Previous</a>
             </div>
         {% else %}
-            <div class="col-md-6" style="float:left;">
+            <div class="col-md-6 left-float">
                 <button class="btn btn-default col-md-offset-6 disabled">Previous</button>
             </div>
         {% endif %}
 
         {% if current_page.has_next %}
-            <div class="col-md-6" style="float:left;">
+            <div class="col-md-6 left-float">
                 <a href="{% url 'rango:pages' %}?current_page={{ current_page.next_page_number }}"
                    class="btn btn-default col-md-offset-6"> Next</a>
             </div>
         {% else %}
-            <div class="col-md-6" style="float:left;">
+            <div class="col-md-6 left-float">
                 <button class="btn btn-default col-md-offset-6 disabled"> Next</button>
             </div>
         {% endif %}

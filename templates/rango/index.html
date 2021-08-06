@@ -29,8 +29,7 @@
             {% if web_site_categories %}
                 <ul>
                     {% for category in web_site_categories %}
-                        <li><a href="{% url 'rango:show_category' category.name %}"
-                               style="font-size:medium;">{{ category.name }}</a></li>
+                        <li><a href="{% url 'rango:show_category' category.name %}" class="top-5-list">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -47,7 +46,7 @@
             {% if pages %}
                 <ul>
                     {% for page in pages %}
-                        <li><a href="{{ page.url }}" style="font-size:medium;">{{ page.title }}</a></li>
+                        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -81,7 +80,5 @@
                 });
             }
         });
-
-
     </script>
 {% endblock %}

@@ -14,14 +14,12 @@
 {% block resultBlock %}
     {% if all_categories %}
         {% for category in all_categories %}
-            <div class="show-search-results thumbnail" style="">
-                <h4><a href="{% url 'rango:show_category' category.name %}"> {{ category.name }}</a></h4>
+            <div class="show-search-results thumbnail">
+                <h4 class="heading-4"><a href="{% url 'rango:show_category' category.name %}"> {{ category.name }}</a></h4>
                 <form role="form" class="form-inline">
-                    <button type="button" class="btn btn-default likes"><i class="fa fa-heart-o"
-                                                                           style="font-size:15px"> {{ category.likes }}</i>
+                    <button type="button" class="btn btn-default likes"><i class="fa fa-heart-o"> {{ category.likes }}</i>
                     </button>
-                    <button type="button" class="btn btn-default views"><i class="fa fa-eye"
-                                                                           style="font-size:15px"> {{ category.views }}</i>
+                    <button type="button" class="btn btn-default views"><i class="fa fa-eye"> {{ category.views }}</i>
                     </button>
                 </form>
             </div>
