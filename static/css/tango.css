@@ -1,0 +1,107 @@
+.form-inline .form-group {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.form-inline .form-group .form-control {
+    width: 100%;
+    margin-left: 0;
+}
+
+.result-block {
+    margin-top: 5%;
+}
+
+.result-block > h3 {
+    margin-bottom: 5%;
+}
+
+.img-circle {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.side-content {
+    margin-top: 10px;
+}
+
+.sidebar-offcanvas.jumbotron {
+    padding: 2%;
+}
+
+.show-search-results {
+    border: 1px solid #CCCCCC;
+    padding: 1.5%;
+    margin-bottom: 1%;
+}
+
+.show-search-results > h4 {
+    margin-bottom: 3%;
+}
+
+.show-search-results > div {
+    margin-bottom: 10px;
+}
+
+.user-info > label {
+    padding: 0;
+    margin-right: 12px;
+}
+
+.user-info.upload-button > button {
+    width: 20%;
+    margin-left: calc(2.5% - 2px);
+}
+
+.user-info.upload-button button:nth-child(1) {
+    margin-right: 5%;
+}
+
+.login-area > form > button {
+    margin-top: 10%;
+}
+
+.login-area {
+    margin-top: 5%;
+}
+
+.external-link {
+    margin-top: 5%;
+    margin-left: 10%;
+    width: 20%;
+}
+
+.fa {
+    font-size:15px;
+}
+
+.top-5-list {
+    font-size:medium;
+}
+
+.left-float {
+    float:left;
+}
+
+
+#side-content-form-label {
+
+}
+
+#side-content-form-text {
+    resize: none;
+}
+
+#sidebar {
+    background: lightslategray;
+}
+
+#search {
+    margin-bottom: 5px;
+}
+
+#side-content-form-text {
+    margin-bottom:10px;
+}

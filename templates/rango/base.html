@@ -10,105 +10,15 @@
         {% endblock %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 引入 Bootstrap -->
+
     <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
-    <link rel="icon" href="{% static "images/favicon.ico" %}">
+    <link rel="icon" href="{% static "icons/aircraft.svg" %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- 这是图标 -->
+    <link rel="stylesheet" href="{% static "css/tango.css" %}">
 
-    <!-- Custom styles for this template -->
     <link href="{% static "css/offcanvas.css" %}" rel="stylesheet">
 
-
-    <style>
-        .form-inline .form-group {
-            margin-left: 0;
-            padding-left: 0;
-        }
-
-        .form-inline .form-group .form-control {
-            width: 100%;
-            margin-left: 0;
-        }
-
-        .result-block {
-            margin-top: 5%;
-        }
-
-        .result-block > h3 {
-            margin-bottom: 5%;
-        }
-
-        .img-circle {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 5%;
-            margin-top: 5%;
-        }
-
-        .side-content {
-            margin-top: 10px;
-        }
-
-        .sidebar-offcanvas.jumbotron {
-            padding: 2%;
-        }
-
-        .show-search-results {
-            border: 1px solid #CCCCCC;
-            padding: 1.5%;
-            margin-bottom: 1%;
-        }
-
-        .show-search-results > h4 {
-            margin-bottom: 3%;
-        }
-
-        .user-info > label {
-            padding: 0;
-            margin-right: 12px;
-        }
-
-        .user-info.upload-button > button {
-            width: 20%;
-            margin-left: calc(2.5% - 2px);
-        }
-
-        .user-info.upload-button button:nth-child(1) {
-            margin-right: 5%;
-        }
-
-        .login-area > form > button {
-            margin-top: 10%;
-        }
-
-        .login-area {
-            margin-top: 5%;
-        }
-
-        .external-link {
-            margin-top: 5%;
-            margin-left: 10%;
-            width: 20%;
-        }
-
-        #side-content-form-label {
-
-        }
-
-        #side-content-form-text {
-            resize: none;
-        }
-
-        #sidebar {
-            background: lightslategray;
-        }
-
-        #search {
-            margin-bottom: 5px;
-        }
-    </style>
 </head>
 <body>
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -162,9 +72,7 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas jumbotron" id="sidebar">
             <div class="list-group">
                 <img class="img-circle center-block" src="{% static "images/rango.jpg" %}"/>
-{#                <div class="list-group-item text-center">#}
                      <a href="{% url 'rango:add_category' %}" class="center-block btn btn-default ">Add Category</a>
-{#                </div>#}
                 <div class="list-group-item side-content">
                     <form role="form" method="POST" action="{% url 'rango:add_video' %}" >
                         {% csrf_token %}
@@ -172,7 +80,7 @@
                             <label for="name"
                                    class="col-md-8 col-md-offset-2 col-lg-offset-2 col-xl-offset-2 text-center"
                                    id="side-content-form-label">Youtube Video Link</label>
-                            <textarea class="col-md-12" rows="3" id="side-content-form-text" style='margin-bottom:10px;' name="iframe_link"></textarea>
+                            <textarea class="col-md-12" rows="3" id="side-content-form-text" name="iframe_link"></textarea>
                         </div>
                         <button type="submit" class="btn btn-default btn-block" name="add_video">Add
                             Video
@@ -206,13 +114,6 @@
     </footer>
 
 </div><!--/.container-->
-
-<script>
-    function open() {
-        document.location.replace("{% url "rango:categories" %}")
-    }
-</script>
-
 
 <!-- jQuery (Bootstrap 的 JavaScript 插件需要引入 jQuery) -->
 <script src="{% static "js/jquery-1.x-git.min.js" %}"></script>
