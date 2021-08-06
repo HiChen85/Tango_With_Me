@@ -55,7 +55,7 @@ class Page(models.Model):
 class Video(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField(verbose_name='title')
-    iframe_url = models.TextField(verbose_name='VideoURL', unique=True)
+    iframe_url = models.TextField(verbose_name='VideoURL')
     def __str__(self):
         return self.title
 
