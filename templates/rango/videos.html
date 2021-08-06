@@ -12,7 +12,17 @@
 {% endblock %}
 
 {% block resultBlock %}
-    <div class="col-md-6 result-block">
-
-    </div>
+    {% if video_urls %}
+        <div class="col-md-6 result-block">
+            {% for v in video_urls %}
+                <label>{{ v.0 }}</label>
+                <iframe width="560" height="315" src="{{ v.1 }}"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            {% endfor %}
+        </div>
+        {% else %}
+        <strong>There is no videos added by {{ user.username }}</strong>
+    {% endif %}
 {% endblock %}

@@ -2,9 +2,11 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
 from django.http import JsonResponse
-from rango.models import WebSiteCategory, Page, User
+from rango.models import WebSiteCategory, Page, Video
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+import re
 # Create your views here.
 def index(request):
     web_site_categories = WebSiteCategory.objects.order_by('-views')[:5]
@@ -44,30 +46,46 @@ def pages(request):
     context['current_page'] = current_page
     return render(request, 'rango/pages.html', context=context)
 
+@login_required
 def profile(request):
     return render(request, "rango/user-profile.html")
 
 
-def add_category(request):
-    return render(request, "rango/add-category.html")
 
+@login_required
 def add_video(request):
     if request.method == 'POST':
-        iframe_link = request.POST.get('iframe_link')
-        print(iframe_link)
-        return redirect(reverse('rango:index'))
+        user = User.objects.get(username=request.user.username)
+        video = Video()
+        iframe_url = request.POST.get('iframe_url')
+        title = request.POST.get('video_title')
+        video.user = user
+        video.iframe_url = iframe_url
+        video.title = title
+        video.save()
+        return redirect(reverse('rango:videos'))
+    return render(request, 'rango/index.html')
 
-
+@login_required
 def videos(request):
+    pattern = r'src=.+"\stitle'
     context = {}
+    user = User.objects.get(username=request.user.username)
+    videos = Video.objects.filter(user=user)
+    video_url_list = []
+    for v in videos:
+        substr = re.search(pattern, v.iframe_url)
+        url = substr.group().split(' ')[0].split('"')[1]
+        video_url_list.append((v.title, url))
 
+    context['video_urls'] = video_url_list
     return render(request, 'rango/videos.html', context=context)
 
 
 def about(request):
     return render(request, 'rango/about.html')
 
-
+@login_required
 def like_up(request):
     context_dict = {}
     if request.method == 'POST':

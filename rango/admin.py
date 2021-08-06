@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import WebSiteCategory, UserProfile, UserCategory, Page
+from .models import WebSiteCategory, UserProfile, UserCategory, Page, Video
 # Register your models here.
 
 class WebSiteCategoryAdmin(admin.ModelAdmin):
@@ -23,4 +23,5 @@ admin.site.register(WebSiteCategory, WebSiteCategoryAdmin)
 admin.site.register(UserCategory, UserCategoryAdmin)
 admin.site.register(Page, PageAdmin)
 admin.site.register(UserProfile)
+admin.site.register(Video)
 

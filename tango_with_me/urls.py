@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rango/', include(('rango.urls', 'rango'), namespace='rango')),
     path('accounts/', include('allauth.urls')),
+    path('search/', include(('search.urls', 'search'), namespace='search')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
