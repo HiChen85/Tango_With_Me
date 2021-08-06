@@ -16,4 +16,5 @@ urlpatterns = [
     path('videos/', views.videos, name='videos'),
     path('like_up', views.like_up, name='like_up'),
     path('add_view', views.add_view, name='add_view'),
+    path('upload_img', views.upload_img, name='upload_img'),
 ]

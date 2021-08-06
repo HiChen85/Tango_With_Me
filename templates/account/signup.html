@@ -14,6 +14,36 @@
 {% endblock %}
 
 {% block resultBlock %}
+     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        function imgPreview(fileDom) {
+            if (window.FileReader) {
+                var reader = new FileReader();
+            } else {
+                alert("Your device does not support the image preview function, please upgrade your device if you need this function!");
+            }
+            var file = fileDom.files[0];
+            var filename = file.name;
+            var reg2 = /^(\s|\S)+(jpg|png|JPG|PNG)+$/;
+            if (!reg2.test(filename)) {
+                alert("Please select a picture ！");
+                var img = document.getElementById("preview");
+                img.src = null;
+                document.getElementById("avatar").value = null;
+                return;
+            }
+            reader.onload = function (e) {
+                var img = document.getElementById("preview");
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+            var formData = new FormData();
+            formData.append("file",fileDom.files[0])
+            formData.append("filename",filename)
+
+        };
+    </script>
+
     <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
     </p>
 
@@ -23,6 +53,8 @@
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
+        <img class="img-circle center-block" src="" id="preview" />  <!--../../img/hytx1.png-->
+        <input type="file" id="avatar" name="avatar" style="margin-left: 10px;" onchange="imgPreview(this)" />
         <button type="submit">{% trans "Sign Up" %} &raquo;</button>
     </form>
 

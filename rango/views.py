@@ -1,13 +1,21 @@
+import os
+
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rango.models import WebSiteCategory, Page, Video
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import time
 import re
 # Create your views here.
+from tango_with_me import settings
+
+
 def index(request):
     web_site_categories = WebSiteCategory.objects.order_by('-views')[:5]
     pages = Page.objects.order_by('-likes')[:5]
@@ -48,8 +56,9 @@ def pages(request):
 
 @login_required
 def profile(request):
-    return render(request, "rango/user-profile.html")
+    # if request.method == 'POST':
 
+    return render(request, "rango/user-profile.html")
 
 
 @login_required
@@ -134,3 +143,4 @@ def add_view(request):
             context_dict = {'views': current_views}
             print(context_dict)
         return JsonResponse(context_dict)
+
