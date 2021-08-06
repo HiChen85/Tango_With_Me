@@ -144,3 +144,18 @@ def add_view(request):
             print(context_dict)
         return JsonResponse(context_dict)
 
+@csrf_exempt
+def upload_img(request):
+    image = request.FILES.get('file')
+    path_image = settings.STATIC_DIR +  "/image_user/"
+    image_name1 = str(int(round(time.time()*1000)))
+    image_path = path_image+image_name1+'.jpg'
+    print(image_path)
+    if not os.path.exists(image_path):
+        print(123)
+        with open(image_path, 'wb') as f:
+            f.write(image.read())
+            f.close()
+    else:
+        return HttpResponse("false")
+    return HttpResponse(image_path)
